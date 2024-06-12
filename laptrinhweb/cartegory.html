@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Mục Sản Phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .form-container {
+            display: none;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #cancelButton {
+            background-color: #f44336;
+        }
+
+        #cancelButton:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Danh sách phim</h1>
+    </header>
+
+    <div id="product-container">
+        <div class="product-card">
+            <img class="product-image" src="https://vanhoadoisong.vn/wp-content/uploads/2022/08/danh-sach-thu-tu-xem-phim-marvel-theo-thu-tu-chuan-khong-can-chinh-cho-ban-moi-xem-04.jpg" alt="Product 1">
+            <h2>IRON MAN 1</h2>
+            <p>Marvel</p>
+            <p>Price: 80000 vnd</p>
+            <button onclick="showForm('IRON MAN 1', 80000)">Đặt vé</button>
+        </div>
+        
+        <div class="product-card">
+            <img class="product-image" src="https://taiphim4k.com/wp-content/uploads/2022/11/Ngu%CC%9Bo%CC%9B%CC%80i-Nhe%CC%A3%CC%82n-Kho%CC%82ng-co%CC%80n-nha%CC%80-2021-Spider-Man-No-Way-Home-Taiphim4k-Vietsub.jpeg" alt="Product 2">
+            <h2>SPIDERMAN: NO WAY HOME</h2>
+            <p>Marvel</p>
+            <p>Giá vé: 100000 vnd</p>
+            <button onclick="showForm('SPIDERMAN: NO WAY HOME', 100000)">Đặt vé</button>
+        </div>
+
+        <div class="product-card">h
+            <img class="product-image" src="https://genk.mediacdn.vn/2018/3/29/photo-1-15222919653671165538300.jpg" alt="Product 1">
+            <h2>AVENGER: INFINITY WAR</h2>
+            <p>Marvel</p>
+            <p>Giá vé: 100000 vnd</p>
+            <button onclick="showForm('Product 1', 100000 )">Đặt vé</button>
+        </div>
+
+        <div class="product-card">
+            <img class="product-image" src="https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/tin-tuc/162013/Originals/Avengers%20Endgame.jpg" alt="Product 1">
+            <h2>AVENGER: ENDGAME</h2>
+            <p>Marvel</p>
+            <p>Giá vé: 100000 vnd</p>
+            <button onclick="showForm('Product 1', 100000)">Đặt vé</button>
+        </div>
+
+        <div class="product-card">
+            <img class="product-image" src="https://i.ebayimg.com/images/g/vxsAAMXQgJRQ9aY0/s-l1600.jpg" alt="Product 1">
+            <h2>AVENGER: WHAT IF</h2>
+            <p>Marvel</p>
+            <p>Giá vé: 150000 vnd</p>
+            <button onclick="showForm('Product 1', 150000)">Đặt vé</button>
+        </div>
+
+        <div class="product-card">
+            <img class="product-image" src="https://images.spiderum.com/sp-images/5a681d9076e211e999f2b135ea52549d.jpg" alt="Product 1">
+            <h2>IRON MAN 2</h2>
+            <p>Marvel</p>
+            <p>Giá vé: 120000 vnd</p>
+            <button onclick="showForm('Product 1', 120000)">Đặt vé</button>
+
+     
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="form-container" id="formContainer">
+            <form>
+                <label for="name">Tên phim:</label> <p id="tenphim" name="name"></p>
+                
+                <label for="price">Giá vé:</label> <p id="giave" name="price"></p>
+
+                <label for="seat">Chọn Ghế:</label>
+                <select id="seat" name="seat">
+                    <option value="vip">VIP</option>
+                    <option value="standard">Thường</option>
+                </select><br><br>
+
+                <label for="cinema">Chọn Rạp:</label>
+                <select id="cinema" name="cinema">
+                    <option value="cinema1">Rạp 1</option>
+                    <option value="cinema2">Rạp 2</option>
+                </select><br><br>
+
+                <button type="button" onclick="confirmBooking()">Xác Nhận</button>
+                <button type="button" id="cancelButton" onclick="cancelBooking()">Hủy</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showForm(productName, price) {
+            var overlay = document.getElementById('overlay');
+            var formContainer = document.getElementById('formContainer');
+            
+            overlay.style.display = 'flex';
+            formContainer.style.display = 'block';
+            document.getElementById('tenphim').innerHTML = productName;
+            document.getElementById('giave').innerHTML = price;
+            
+            
+        }
+
+        function confirmBooking() {
+            var name = document.getElementById('tenphim').innerHTML;
+            var giave = document.getElementById('giave').innerHTML;
+            var seat = document.getElementById('seat').value;
+            var cinema = document.getElementById('cinema').value;
+
+            alert(`Đặt vé thành công!\nTên: ${name}\nGía vé: ${giave}\nGhế: ${seat}\nRạp: ${cinema}`);
+         
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'none';
+        }
+
+        function cancelBooking() {
+           
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('formContainer').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
